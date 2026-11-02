@@ -55,6 +55,18 @@ anything that static analysis cannot establish.
 
 **Want a tiny first run?** Install into this checkout using `--project .`, then ask your agent to investigate `examples/demo-app/export.js`. See the [walkthrough](examples/walkthrough.md) for a checkable result. No MCP server or external package required.
 
+## Recover source that actually ships
+
+The companion **Source Recovery** skill produces files, hashes, and a provenance manifest. It recovers readable scripts and embedded source-map text; it guides the agent to available decompilers for compiled components. Decompiled output is labeled approximate, never passed off as the original source project.
+
+```bash
+python3 scripts/install.py --client all --project /path/to/project --skill source-recovery
+```
+
+Ask: **“Use source-recovery to recover available source from this installed app into a new local directory.”**
+
+The included helper supports loose UTF-8 source, standalone JSON source maps, inline data maps, and embedded indexed-map sections. Archives and native binaries require separate tools. It does not execute the target or fetch remote source maps. [Read the skill →](skills/source-recovery/SKILL.md)
+
 ## One workflow. Three clients.
 
 | Client | Project installation | Explicit invocation |

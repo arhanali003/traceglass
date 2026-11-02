@@ -1,0 +1,4 @@
+interface:
+  display_name: "Source Recovery"
+  short_description: "Extract shipped source and label decompiler approximations"
+  default_prompt: "Use $source-recovery to recover available source from this installed app into a new directory, with provenance and explicit limits."

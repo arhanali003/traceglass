@@ -22,3 +22,7 @@ Official references, checked 2026-11-02:
 - [Antigravity skills](https://antigravity.google/docs/skills)
 
 If the skill is missing, check the destination and project root first. If the skill loads but binary analysis is unavailable, see [backends](backends.md); discovery and engine availability are different problems.
+
+## Source Recovery companion
+
+Add `--skill source-recovery` to the installer command. This installs `skills/source-recovery` under the same client-specific skills root, without replacing Traceglass. Invoke `$source-recovery` in Codex, `/source-recovery` in Claude Code, or ask Antigravity to use Source Recovery. The bundled extraction helper requires Python 3.9+. Decompilation requires a separate compatible backend.
