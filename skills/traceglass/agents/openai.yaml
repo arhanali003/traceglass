@@ -1,0 +1,4 @@
+interface:
+  display_name: "Traceglass"
+  short_description: "Trace software behavior back to verifiable evidence"
+  default_prompt: "Use $traceglass to investigate this artifact and explain its behavior with evidence and explicit unknowns."

@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="480" viewBox="0 0 1280 480" role="img" aria-labelledby="title desc">
+<title id="title">Traceglass</title><desc id="desc">See the behavior. Follow the evidence. Reverse-engineering skills for Codex, Claude Code, and Antigravity.</desc>
+<defs>
+ <linearGradient id="bg" x2="1" y2="1"><stop stop-color="#101c25"/><stop offset="1" stop-color="#080f17"/></linearGradient>
+ <linearGradient id="glass" x2="1" y2="1"><stop stop-color="#b4f47b" stop-opacity=".18"/><stop offset="1" stop-color="#72cde3" stop-opacity=".02"/></linearGradient>
+ <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse"><path d="M40 0H0V40" fill="none" stroke="#a6c3d2" stroke-opacity=".055"/></pattern>
+</defs>
+<rect width="1280" height="480" rx="22" fill="url(#bg)"/><rect width="1280" height="480" rx="22" fill="url(#grid)"/>
+<path d="M56 60h28m-28 0v28M1224 60h-28m28 0v28M56 420h28m-28 0v-28M1224 420h-28m28 0v-28" stroke="#71918e" fill="none"/>
+<g font-family="Arial, Helvetica, sans-serif">
+<circle cx="84" cy="101" r="5" fill="#c4f268"/><text x="102" y="106" fill="#b7c8c9" font-size="13" letter-spacing="3">SOFTWARE, UNDERSTOOD.</text>
+<text x="78" y="222" fill="#f0f6ef" font-size="86" font-weight="700" letter-spacing="-4">Traceglass</text>
+<text x="82" y="276" fill="#c4f268" font-size="26">See the behavior. Follow the evidence.</text>
+<text x="83" y="321" fill="#a0b1bc" font-size="17">Reverse-engineering skills for AI coding agents.</text>
+<g fill="#d0dcdf" font-size="12" letter-spacing="1.4"><text x="83" y="386">CODEX</text><text x="174" y="386" fill="#526979">/</text><text x="200" y="386">CLAUDE CODE</text><text x="347" y="386" fill="#526979">/</text><text x="375" y="386">ANTIGRAVITY</text></g>
+<g transform="translate(825 90)">
+<rect x="48" y="0" width="250" height="260" rx="15" fill="#101f2a" stroke="#2a424d"/>
+<rect x="24" y="24" width="250" height="260" rx="15" fill="#10242b" stroke="#44615b"/>
+<rect x="0" y="48" width="250" height="260" rx="15" fill="#13272c" stroke="#80a879"/>
+<rect x="0" y="48" width="250" height="260" rx="15" fill="url(#glass)"/>
+<text x="24" y="83" font-size="11" letter-spacing="2" fill="#b6d6ac">EVIDENCE / 001</text>
+<path d="M34 132H94V179H181V252" stroke="#c4f268" stroke-width="2" fill="none"/>
+<path d="M94 179V234H53" stroke="#6f9296" stroke-width="2" stroke-dasharray="5 6" fill="none"/>
+<g fill="#142a2b" stroke="#c4f268" stroke-width="2"><circle cx="34" cy="132" r="7"/><circle cx="94" cy="179" r="7"/><circle cx="181" cy="252" r="7"/></g>
+<text x="112" y="136" font-size="12" fill="#d1dfd6">Observe</text><text x="112" y="202" font-size="12" fill="#d1dfd6">Trace</text><text x="23" y="282" font-size="12" fill="#c4f268">Verify the claim.</text>
+</g></g></svg>
