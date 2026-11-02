@@ -65,6 +65,8 @@ python3 scripts/install.py --client all --project /path/to/project --skill sourc
 
 Ask: **“Use source-recovery to recover available source from this installed app into a new local directory.”**
 
+For compiled macOS components, `native_report.py` exports static metadata, symbols, and optional assembly. The [deep native workflow](skills/source-recovery/references/native-depth.md) adds provider discovery, scoped decompilation, and explicit failure tracking. A compatible connected decompiler is required for pseudocode.
+
 For complete **local bundle file preservation**, the companion `collect_bundle.py` copies regular files with SHA-256 verification and records symlink metadata. This preserves opaque binaries and resources; it does not decode them or recover cloud content.
 
 The included helper supports loose UTF-8 source, standalone JSON source maps, inline data maps, and embedded indexed-map sections. Archives and native binaries require separate tools. It does not execute the target or fetch remote source maps. [Read the skill →](skills/source-recovery/SKILL.md)

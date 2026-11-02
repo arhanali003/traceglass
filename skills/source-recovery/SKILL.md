@@ -41,6 +41,8 @@ If a user names another editor for comparison, resolve its exact installed name 
 
 ## Continue beyond loose files
 
+For compiled cores, read [deep native recovery](references/native-depth.md). Use its module-level evidence and decompilation checkpoints instead of treating file copying as source recovery.
+
 If important code remains packaged or compiled, read [recovery routes](references/routes.md) and follow the relevant route with tools actually available. Do not stop at an inventory when a supported source extraction or scoped decompilation route remains useful. Discover backend schemas rather than inventing command parameters. Do not execute an installed target simply to recover static code.
 
 For large native apps, select a user-relevant module or feature and recover a bounded set of functions first. Report which module/function boundary was inspected and what remains. Full-program pseudocode exports are a separate potentially large deliverable; do not equate them with a buildable original project.
