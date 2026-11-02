@@ -25,6 +25,20 @@ The helper requires Python 3.9+ and never executes target code. It copies recogn
 
 Read representative recovered files. Identify bundled framework/vendor code separately from application-specific code; file extensions and copyright text are clues, not proof of ownership. A source map's embedded text may represent an earlier transform stage, not the author's entire original repository. Null `sourcesContent` means the text is absent; a path alone does not recover it.
 
+## Preserve remaining local resources
+
+For a request to collect the remaining bundle files, run:
+
+```bash
+python3 /absolute/path/to/source-recovery/scripts/collect_bundle.py \
+  --target /absolute/path/to/App.app \
+  --output /absolute/path/to/new-bundle-output
+```
+
+Check available disk space against bundle size first. The collector preserves all encountered regular files regardless of extension, mirrors directory paths, verifies output hashes, and records symlink targets without following or recreating them. It does not execute the app. Review `bundle-manifest.json`: errors make the result partial. This is a local file-content snapshot, not a runnable duplicate or recovered source project. Permissions, extended attributes and signatures are not recreated. Nested archives, compiled shaders, model weights, and native resources remain opaque until a suitable parser handles them.
+
+If a user names another editor for comparison, resolve its exact installed name (for example Final Cut Pro versus iMovie). Keep its outputs and provenance separate. Do not search unrelated applications or substitute another application's binaries/resources for missing target components. Document a behavior or interface comparison and use it to guide separately authored code. Another editor cannot supply missing original source or remote service implementations for the target.
+
 ## Continue beyond loose files
 
 If important code remains packaged or compiled, read [recovery routes](references/routes.md) and follow the relevant route with tools actually available. Do not stop at an inventory when a supported source extraction or scoped decompilation route remains useful. Discover backend schemas rather than inventing command parameters. Do not execute an installed target simply to recover static code.
