@@ -75,9 +75,12 @@ def verify(bundle):
         item = {'path': entry['path'], 'status': 'ok'}
         try:
             path = regular_path(root, entry['output'].split('/'))
+            path_before = path.lstat()
             flags = os.O_RDONLY | getattr(os, 'O_BINARY', 0) | getattr(os, 'O_NOFOLLOW', 0)
             with os.fdopen(os.open(path, flags), 'rb') as stream:
                 before = os.fstat(stream.fileno())
+                if (before.st_dev, before.st_ino) != (path_before.st_dev, path_before.st_ino):
+                    raise ValueError('File identity changed before reading')
                 if not stat.S_ISREG(before.st_mode):
                     raise ValueError('Expected regular file')
                 digest = hashlib.sha256()
@@ -88,7 +91,7 @@ def verify(bundle):
                 after = os.fstat(stream.fileno())
             item.update(bytes=size, sha256=digest.hexdigest())
             signature = lambda s: (s.st_dev, s.st_ino, s.st_size, s.st_mtime_ns, s.st_ctime_ns)
-            if signature(before) != signature(after) or signature(after) != signature(path.lstat()):
+            if signature(before) != signature(after) or signature(path_before) != signature(path.lstat()):
                 item['status'] = 'changed_during_read'
             elif size != entry['bytes'] or digest.hexdigest() != entry['sha256']:
                 item['status'] = 'mismatch'

@@ -7,6 +7,7 @@ import subprocess
 import sys
 import tempfile
 import unittest
+from types import SimpleNamespace
 from unittest.mock import patch
 
 SCRIPTS = Path(__file__).resolve().parents[1] / 'skills/source-recovery/scripts'
@@ -51,6 +52,22 @@ class VerifyBundleTests(unittest.TestCase):
         self.assertEqual(result['checked_files'], 1)
         self.assertEqual(result['status'], 'ok')
         self.assertEqual(before, {p.relative_to(self.bundle): p.read_bytes() for p in self.bundle.rglob('*') if p.is_file()})
+
+    def test_path_and_descriptor_timestamp_precision_can_differ(self):
+        real_fstat = os.fstat
+
+        def descriptor_stat(fd):
+            value = real_fstat(fd)
+            fields = {name: getattr(value, name) for name in
+                      ('st_dev', 'st_ino', 'st_mode', 'st_size', 'st_mtime_ns', 'st_ctime_ns')}
+            fields['st_ctime_ns'] += 100
+            return SimpleNamespace(**fields)
+
+        with patch.object(os, 'fstat', side_effect=descriptor_stat):
+            other = self.root / 'different-precision'
+            result = collector.collect(self.source, other)
+            self.assertEqual(result['errors'], [])
+            self.assertEqual(verifier.verify(other)['status'], 'ok')
 
     def test_same_size_tampering_is_detected(self):
         self.payload.write_bytes(b'\x00\xffjello')

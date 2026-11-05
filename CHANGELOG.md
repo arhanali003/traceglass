@@ -7,7 +7,9 @@
 - Detect changed/missing files and propagate original collection errors.
 - Validate manifest records and reject unsafe paths, symlinks/reparse points,
   special files, duplicate outputs, and manifests larger than 16 MiB.
-- Add 15 tests covering collector handoff, CLI behavior, tampering and unsafe inputs.
+- Add 16 tests covering collector handoff, CLI behavior, tampering and unsafe inputs.
+- Fix false change detection when path and descriptor timestamps differ in
+  precision, and pin Ubuntu 24.04 to retain Python 3.9 test coverage.
 - Extend existing cross-platform CI with CLI smoke verification and a job timeout.
 - Document installation, examples, result semantics, contribution expectations,
   and limits of integrity verification.

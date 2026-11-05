@@ -74,7 +74,9 @@ def collect(target, output):
                     after = os.fstat(source.fileno())
                 current = path.lstat()
                 signature = lambda s: (s.st_dev, s.st_ino, s.st_size, s.st_mtime_ns, s.st_ctime_ns)
-                if signature(before) != signature(after) or signature(after) != signature(current):
+                # Compare path and descriptor metadata separately: Windows can
+                # report different timestamp precision for stat and fstat.
+                if signature(before) != signature(current) or signature(opened) != signature(after):
                     raise OSError('Source changed during copying')
                 verify = hashlib.sha256()
                 with dest.open('rb') as stream:
