@@ -71,6 +71,20 @@ For complete **local bundle file preservation**, the companion `collect_bundle.p
 
 The included helper supports loose UTF-8 source, standalone JSON source maps, inline data maps, and embedded indexed-map sections. Archives and native binaries require separate tools. It does not execute the target or fetch remote source maps. [Read the skill →](skills/source-recovery/SKILL.md)
 
+## Recheck evidence before an agent uses it
+
+The Source Recovery companion includes a read-only bundle verifier:
+
+```bash
+python3 skills/source-recovery/scripts/verify_bundle.py --bundle /path/to/collected-output
+```
+
+It checks saved files against `bundle-manifest.json`, returning JSON and exit
+codes for intact, failed, or invalid evidence. It detects changed/missing files
+and preserves collection-error reporting. A matching manifest does not establish
+authenticity or completeness. [Installation and command contract](docs/bundle-verification.md)
+· [Runnable example](examples/verify-bundle.md).
+
 ## One workflow. Three clients.
 
 | Client | Project installation | Explicit invocation |
@@ -99,7 +113,7 @@ skills/traceglass/       Portable skill and investigation playbooks
 examples/               Small fixture and worked investigation
 scripts/install.py      Dependency-free, non-overwriting installer
 assets/                 Editable banner, workflow, and report artwork
-tests/                  Installer behavior checks
+tests/                  Installer, recovery, preservation and verification checks
 ```
 
 Read the [skill](skills/traceglass/SKILL.md), try the [example](examples/walkthrough.md), or contribute a [reproducible investigation](CONTRIBUTING.md). If Traceglass helps you understand a piece of software, a star helps others find it.
