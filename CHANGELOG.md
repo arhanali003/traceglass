@@ -1,6 +1,16 @@
 # Changelog
 
-## Unreleased — proposed v0.2.0
+## Unreleased — proposed v0.2.0b1
+
+- Fix misleading recovery success for skipped inputs and reject special-file roots.
+- Retain collector manifests on per-directory failures; skip reparse entries.
+- Reject Windows-ambiguous paths in verifier manifests on every host.
+- Add file-identity checks to recovery, helper version flags, deterministic ZIP
+  packaging, clean-install smoke checks, and beta/security guidance.
+- Intentional behavior change: recovery returns exit 2 when skips are recorded.
+- Add lint/format checks and expanded regression coverage.
+
+### Previously implemented, still unreleased
 
 - Add a dependency-free, read-only verifier for collected bundle manifests and
   payloads, with versioned JSON results and exit codes for agent automation.
@@ -14,5 +24,5 @@
 - Document installation, examples, result semantics, contribution expectations,
   and limits of integrity verification.
 
-Existing installer and collector interfaces remain unchanged. This entry is not
-a published release. See [draft notes](docs/releases/v0.2.0.md).
+Existing command names and manifest keys remain unchanged. This entry is not
+a published release. See [draft beta notes](docs/releases/v0.2.0b1.md).

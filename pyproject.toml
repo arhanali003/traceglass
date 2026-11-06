@@ -1,0 +1,8 @@
+# Traceglass is distributed as skill folders, not a pip-installable library.
+[tool.ruff]
+target-version = "py39"
+line-length = 100
+exclude = ["dist", ".venv", ".agents", ".claude"]
+
+[tool.ruff.lint]
+select = ["E4", "E7", "E9", "F"]

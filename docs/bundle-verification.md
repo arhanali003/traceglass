@@ -63,7 +63,8 @@ Suggested agent instruction:
   manifests. Additional manifest fields are ignored for compatibility.
 - Validates all file records before reading payloads. Paths must use portable
   relative components: no traversal, absolute paths, backslashes, colons, NULs,
-  empty components, or duplicate output paths. Some unusual filenames that the
+  empty components, trailing dots/spaces, control characters, Windows device names,
+  or duplicate output paths. Some unusual filenames that the
   collector can preserve are intentionally rejected by this portable verifier.
 - Rejects symlinks/reparse points within the bundle and non-regular payloads.
   The selected bundle root itself is resolved to its actual location.
