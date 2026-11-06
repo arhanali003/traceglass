@@ -71,6 +71,20 @@ For complete **local bundle file preservation**, the companion `collect_bundle.p
 
 The included helper supports loose UTF-8 source, standalone JSON source maps, inline data maps, and embedded indexed-map sections. Archives and native binaries require separate tools. It does not execute the target or fetch remote source maps. [Read the skill →](skills/source-recovery/SKILL.md)
 
+## Recheck evidence before an agent uses it
+
+The Source Recovery companion includes a read-only bundle verifier:
+
+```bash
+python3 skills/source-recovery/scripts/verify_bundle.py --bundle /path/to/collected-output
+```
+
+It checks saved files against `bundle-manifest.json`, returning JSON and exit
+codes for intact, failed, or invalid evidence. It detects changed/missing files
+and preserves collection-error reporting. A matching manifest does not establish
+authenticity or completeness. [Installation and command contract](docs/bundle-verification.md)
+· [Runnable example](examples/verify-bundle.md).
+
 ## One workflow. Three clients.
 
 | Client | Project installation | Explicit invocation |
@@ -99,7 +113,7 @@ skills/traceglass/       Portable skill and investigation playbooks
 examples/               Small fixture and worked investigation
 scripts/install.py      Dependency-free, non-overwriting installer
 assets/                 Editable banner, workflow, and report artwork
-tests/                  Installer behavior checks
+tests/                  Installer, recovery, preservation and verification checks
 ```
 
 Read the [skill](skills/traceglass/SKILL.md), try the [example](examples/walkthrough.md), or contribute a [reproducible investigation](CONTRIBUTING.md). If Traceglass helps you understand a piece of software, a star helps others find it.
@@ -109,3 +123,36 @@ Read the [skill](skills/traceglass/SKILL.md), try the [example](examples/walkthr
 Inspired by the evidence-oriented approach of [Reverse Engineer Anything (REA)](https://github.com/morluto/rea). Traceglass provides separately authored instructions, packaging, examples, and presentation; REA is an optional external backend. This project is not affiliated with REA, OpenAI, Anthropic, or Google. See [provenance](docs/provenance.md).
 
 [MIT](LICENSE) for this repository. External tools retain their own licenses.
+
+## Early beta: try the tools without a model
+
+This checkout is preparing **0.2.0b1**; it is not a published package-manager release.
+Python 3.9+ is supported; CI targets 3.9 and 3.13 on Linux, macOS and Windows.
+Native reports additionally require macOS tools. Live execution in each AI client
+remains unverified.
+
+From this repository root, choose fresh output directories:
+
+```sh
+python3 scripts/install.py --version
+python3 skills/source-recovery/scripts/collect_bundle.py --target examples/demo-app --output demo-bundle
+python3 skills/source-recovery/scripts/verify_bundle.py --bundle demo-bundle
+```
+
+Expected: `Traceglass 0.2.0b1`, one copied file, then JSON containing `status: "ok"`,
+`checked_files: 1`, and exit 0. This is useful for retaining a small artifact before
+changing it and detecting later evidence tampering. It does not establish what a
+production application executed. Use `python` instead of `python3` on Windows if
+needed. Recovery/collection output must be outside the target; reruns need new paths.
+
+For a fuller local walkthrough, invalid inputs, larger fixtures and feedback, see
+[BETA_TESTING.md](BETA_TESTING.md). [CLI and troubleshooting](docs/cli.md) explains
+all exit codes. In particular, recovery exit 2 now indicates recorded skips.
+[Security boundaries](SECURITY.md) describe private-data and filesystem limits.
+
+Build a local distribution with
+`python3 scripts/build_release.py --output dist/traceglass-0.2.0b1.zip`.
+It includes an inventory of file hashes and preserves the installer layout.
+`python3 scripts/smoke_release.py` builds and checks an unpacked copy in a temporary
+directory. These commands do not publish anything. There is no pip-installable
+Traceglass package in this repository. [Draft beta notes](docs/releases/v0.2.0b1.md).

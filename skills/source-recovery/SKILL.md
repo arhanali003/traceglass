@@ -21,7 +21,7 @@ python3 /absolute/path/to/source-recovery/scripts/recover.py \
   --output /absolute/path/to/new-recovery-directory
 ```
 
-The helper requires Python 3.9+ and never executes target code. It copies recognized UTF-8 source files byte-for-byte, reads standalone and inline JSON source maps, and emits `manifest.json` plus `REPORT.md`. It skips symlinks and bounds individual file size. Inspect its skipped entries before reporting coverage. Its filename-based scan does not parse archives or locate embedded binary resources.
+The helper requires Python 3.9+ and never executes target code. It copies recognized UTF-8 source files byte-for-byte, reads standalone and inline JSON source maps, and emits `manifest.json` plus `REPORT.md`. It skips symlinks and bounds individual file size. Inspect its skipped entries before reporting coverage. Exit 2 indicates recorded skips/partial results; exit 1 indicates a fatal failure. An empty candidate set can still return 0. Its filename-based scan does not parse archives or locate embedded binary resources.
 
 Read representative recovered files. Identify bundled framework/vendor code separately from application-specific code; file extensions and copyright text are clues, not proof of ownership. A source map's embedded text may represent an earlier transform stage, not the author's entire original repository. Null `sourcesContent` means the text is absent; a path alone does not recover it.
 

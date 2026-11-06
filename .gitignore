@@ -3,3 +3,8 @@ __pycache__/
 .DS_Store
 .agents/
 .claude/
+.venv/
+.ruff_cache/
+dist/
+beta-*/
+demo-bundle/
